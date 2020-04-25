@@ -20,9 +20,12 @@ public class MaximumClosePriceDriver {
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		
-		// Set Maper Reducer classes
+		// Set Mapper Reducer classes
 		job.setMapperClass(MaximumClosePriceMapper.class);
 		job.setReducerClass(MaximumClosePriceReducer.class);
+		
+		// Combiner (optional) 
+		job.setCombinerClass(MaximumClosePriceReducer.class);	
 		
 		// Output types
 		job.setOutputKeyClass(Text.class);
